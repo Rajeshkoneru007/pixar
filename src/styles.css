@@ -4,8 +4,10 @@ body{
     margin: 0;
 }
 footer{
+    border-top: #ccc solid 1px;
     position:fixed;
     bottom: 0%;
     padding: 20px;
     font-size: 14px;
+    width: 100%;
 }

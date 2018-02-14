@@ -1,9 +1,9 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import {AgentSearchComponent} from './agent-search/agent-search.component';
+import {VendorSearchComponent} from './vendor-search/vendor-search.component';
 
 const routes: Routes = [
-  {path:'',component:AgentSearchComponent}
+  {path:'',component:VendorSearchComponent}
 ];
 
 @NgModule({
