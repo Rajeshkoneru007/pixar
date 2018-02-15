@@ -1,7 +1,7 @@
 import { Component, OnInit} from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
-import {Router, ActivatedRoute } from '@angular/router';
+import {ActivatedRoute } from '@angular/router';
 
 import {VendorService} from '../services/vendor.service'
 
@@ -21,7 +21,7 @@ export class VendorSearchComponent implements OnInit {
 
   vendorSearchForm:FormGroup;
   
-  constructor(private vendorService:VendorService, private fb:FormBuilder, private router: Router, private route: ActivatedRoute) {}
+  constructor(private fb:FormBuilder, private route: ActivatedRoute) {}
     
   getStates(){
     this.route.data.subscribe((data:{states:State[]}) => {
