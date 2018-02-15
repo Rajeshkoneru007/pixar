@@ -21,7 +21,7 @@ export class VendorService {
         .pipe(
           catchError(this.handleError)
         )
-    /*TODO:Clean reslover*/  
+    /*TODO:Create Node Rest Service*/  
   }
 
   getRegion():Observable<Region[]>{
