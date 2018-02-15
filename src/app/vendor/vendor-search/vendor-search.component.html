@@ -7,13 +7,17 @@
     <mat-card-content>
         <form [formGroup]="vendorSearchForm" novalidate>
             <mat-form-field>
-                <mat-select id="state" placeholder="Search By States" formControlName="stateField" required>
+                <mat-select id="state" placeholder="Search By States" formControlName="state">
                     <mat-option>Please Select</mat-option>
                     <mat-option *ngFor="let s of states" [value]="s">
                         {{s}}
                     </mat-option>
                 </mat-select>
-
+                <mat-error *ngIf="state.invalid && (state.dirty || state.touched)">
+                        <div *ngIf="state.errors.required">
+                            State is required
+                        </div>
+                </mat-error>    
                 
             </mat-form-field>
             
