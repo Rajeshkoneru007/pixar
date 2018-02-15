@@ -16,6 +16,7 @@ import {State} from '../model/vendor'
 export class VendorSearchComponent implements OnInit {
   
   states:State[]
+  //submitted: boolean = false
   //region:Region[]
 
   vendorSearchForm:FormGroup;
@@ -38,14 +39,18 @@ export class VendorSearchComponent implements OnInit {
 
   createVendorSearchForm(){
     this.vendorSearchForm = this.fb.group({
-      'stateField':['', Validators.required],
+      state:['', Validators.required],
       /*TODO:Check whather form model binding to data model*/
     })
+  }
+
+  get state(){
+    return this.vendorSearchForm.get('state');
   }
 
   ngOnInit(){
     this.getStates();
     //this.getRegion();
-    this.createVendorSearchForm();
+    this.createVendorSearchForm()
   }
 }
