@@ -1,5 +1,7 @@
 import { Component, OnInit} from '@angular/core';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+
+import {Router, ActivatedRoute } from '@angular/router';
 
 import {VendorService} from '../services/vendor.service'
 
@@ -18,11 +20,11 @@ export class VendorSearchComponent implements OnInit {
 
   vendorSearchForm:FormGroup;
   
-  constructor(private vendorService:VendorService, private fb:FormBuilder) {}
+  constructor(private vendorService:VendorService, private fb:FormBuilder, private router: Router, private route: ActivatedRoute) {}
     
   getStates(){
-    let data = this.vendorService.getStates().subscribe(data => {
-      this.states = data;
+    this.route.data.subscribe((data:{states:State[]}) => {
+      this.states = data.states;
     });
   }
 
@@ -36,7 +38,7 @@ export class VendorSearchComponent implements OnInit {
 
   createVendorSearchForm(){
     this.vendorSearchForm = this.fb.group({
-      states:'',
+      'stateField':['', Validators.required],
       /*TODO:Check whather form model binding to data model*/
     })
   }

@@ -21,7 +21,7 @@ export class VendorService {
         .pipe(
           catchError(this.handleError)
         )
-    /*TODO:Use reslove to get data first*/  
+    /*TODO:Clean reslover*/  
   }
 
   getRegion():Observable<Region[]>{
