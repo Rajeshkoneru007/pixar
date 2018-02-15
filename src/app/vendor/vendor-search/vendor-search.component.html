@@ -1,19 +1,27 @@
 <mat-card>
     <mat-card-header>
-        <mat-card-title><h2>Vendor Search</h2></mat-card-title>
+        <mat-card-title>
+            <h2>Vendor Search</h2>
+        </mat-card-title>
     </mat-card-header>
     <mat-card-content>
-    <form [formGroup]="vendorSearchForm" novalidate>
-        <mat-form-field>
-            <mat-select placeholder="Search By States" formControlName="states">
-              <mat-option *ngFor="let state of states" [value]="state">
-                {{state}}
-              </mat-option>
-            </mat-select>
-          </mat-form-field>
-    </form>
-</mat-card-content>
-<mat-card-actions>
-    <button mat-raised-button color="accent">Search</button>
-  </mat-card-actions>
- </mat-card>
+        <form [formGroup]="vendorSearchForm" novalidate>
+            <mat-form-field>
+                <mat-select id="state" placeholder="Search By States" formControlName="stateField" required>
+                    <mat-option>Please Select</mat-option>
+                    <mat-option *ngFor="let s of states" [value]="s">
+                        {{s}}
+                    </mat-option>
+                </mat-select>
+
+                
+            </mat-form-field>
+            
+            
+            
+        </form>
+    </mat-card-content>
+    <mat-card-actions>
+        <button mat-raised-button color="accent">Search</button>
+    </mat-card-actions>
+</mat-card>
