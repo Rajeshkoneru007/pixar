@@ -6,26 +6,57 @@
     </mat-card-header>
     <mat-card-content>
         <form [formGroup]="vendorSearchForm" novalidate>
-            <mat-form-field>
-                <mat-select id="state" placeholder="Search By States" formControlName="state">
-                    <mat-option>Please Select</mat-option>
-                    <mat-option *ngFor="let s of states" [value]="s">
-                        {{s}}
-                    </mat-option>
-                </mat-select>
-                <mat-error *ngIf="state.invalid && (state.dirty || state.touched)">
-                        <div *ngIf="state.errors.required">
-                            State is required
-                        </div>
-                </mat-error>    
-                
-            </mat-form-field>
-            
-            
-            
+            <mat-list role="list">
+                <mat-list-item role="listitem">
+                    <mat-form-field>
+                        <mat-select id="region" placeholder="Search By Region" formControlName="region" [(ngModel)]="selectedRegion">
+                            <mat-option>Please Select</mat-option>
+                            <mat-option *ngFor="let r of regions" [value]="r">
+                                {{r}}
+                            </mat-option>
+                        </mat-select>
+                    </mat-form-field>
+
+                </mat-list-item>
+                <mat-list-item>
+                    <mat-form-field>
+                        <mat-select id="state" placeholder="Search By State" formControlName="state" [(ngModel)]="selectedState">
+                            <mat-option>Please Select</mat-option>
+                            <mat-option *ngFor="let s of states[0].states" [value]="s">
+                                {{s}}
+                            </mat-option>
+                        </mat-select>
+                        <mat-error *ngIf="state.invalid && (state.dirty || state.touched)">
+                            <div *ngIf="state.errors.required">
+                                State is required
+                            </div>
+                        </mat-error>
+                    </mat-form-field>
+                </mat-list-item>
+                <mat-list-item>
+                    <mat-form-field>
+                        <input matInput placeholder="Search By Vendor Name">
+                    </mat-form-field>
+                </mat-list-item>
+                <mat-list-item>
+                <mat-form-field>
+                    <mat-select id="vendorId" placeholder="Search By Vendor Id" formControlName="vendorId" [(ngModel)]="selectedVendorId">
+                        <mat-option>Please Select</mat-option>
+                        <mat-option *ngFor="let r of regions" [value]="r">
+                                {{r}}
+                            </mat-option>
+                    </mat-select>
+                </mat-form-field>
+                </mat-list-item>
+            </mat-list>
+
         </form>
     </mat-card-content>
     <mat-card-actions>
-        <button mat-raised-button color="accent">Search</button>
+        <button mat-raised-button color="accent" (click)=submit();>Search</button>
     </mat-card-actions>
+
 </mat-card>
+
+
+<app-vendor-list [vendorResult]="vendorResult"></app-vendor-list>

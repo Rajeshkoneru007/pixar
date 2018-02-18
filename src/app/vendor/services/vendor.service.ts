@@ -2,34 +2,27 @@ import { Injectable } from '@angular/core';
 import { HttpClient,HttpErrorResponse } from '@angular/common/http';
 import { Observable} from 'rxjs/Observable';
 import { ErrorObservable } from 'rxjs/observable/ErrorObservable';
-import { catchError} from 'rxjs/operators';
+import { catchError, map} from 'rxjs/operators';
 
 import {State} from '../model/vendor';
-import {Region} from '../model/vendor';
 
 
 @Injectable()
 export class VendorService {
   
-  private statesURL = 'api/states';
-  private regionURL = 'http://demo8569478.mockable.io/searchByRegion';
+  private statesURL = 'http://localhost:18000/api/states';
   
   constructor(private http: HttpClient) { }
-
+  
   getStates():Observable<State[]>{
-    return this.http.get<State[]>(this.statesURL)
-        .pipe(
+    return this.http
+    .get(this.statesURL)
+    .pipe(
+      map((res:Response) =>{
+         return res
+      }),
           catchError(this.handleError)
         )
-    /*TODO:Create Node Rest Service*/  
-  }
-
-  getRegion():Observable<Region[]>{
-    return this.http.get<Region[]>(this.regionURL)
-    .pipe(
-      catchError(this.handleError)
-    )
-    /*TODO:Use reslove to get data first*/  
   }
 
   private handleError(error: HttpErrorResponse) {

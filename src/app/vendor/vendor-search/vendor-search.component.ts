@@ -1,12 +1,13 @@
 import { Component, OnInit} from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
-import {ActivatedRoute } from '@angular/router';
+import { ActivatedRoute } from '@angular/router';
 
-import {VendorService} from '../services/vendor.service'
+import { RegionService } from '../services/region/region.service';
+import { VendorListService } from '../services/vendorList/vendor-list.service';
 
-import {State} from '../model/vendor'
-//import {Region} from '../model/vendor'
+
+import { State, VendorList, Region } from '../model/vendor'
 
 @Component({
   selector: 'app-vendor-search',
@@ -15,31 +16,38 @@ import {State} from '../model/vendor'
 })
 export class VendorSearchComponent implements OnInit {
   
-  states:State[]
-  //submitted: boolean = false
-  //region:Region[]
+  states:State[];
+  selectedCode:string; /*TODO Move to Model File and map with table*/ 
+  vendorResult:VendorList;
+  regions:Region;
+  
 
   vendorSearchForm:FormGroup;
   
-  constructor(private fb:FormBuilder, private route: ActivatedRoute) {}
+  constructor(
+      private fb:FormBuilder,
+      private route: ActivatedRoute,
+      private vendorListService:VendorListService,
+      private regionService:RegionService
+    ) {}
     
   getStates(){
     this.route.data.subscribe((data:{states:State[]}) => {
       this.states = data.states;
+      /*TODO:why getting error(Property 'name' is missing in type 'Object'. ) with out optional model? */
     });
   }
 
-  /*getRegion(){
-    let data = this.vendorService.getRegion().subscribe(data => {
-      this.region = data;
-      console.log(this.region);
-
+  getRegion(){
+    this.regionService.getRegion().subscribe((data) =>{
+      this.regions = data;
     });
-  }*/
+  }
 
   createVendorSearchForm(){
     this.vendorSearchForm = this.fb.group({
       state:['', Validators.required],
+      region:[''],
       /*TODO:Check whather form model binding to data model*/
     })
   }
@@ -48,9 +56,14 @@ export class VendorSearchComponent implements OnInit {
     return this.vendorSearchForm.get('state');
   }
 
+  submit(){
+    this.vendorListService.getVendorList(this.selectedCode).subscribe(data =>{
+      this.vendorResult = data;
+    })
+  }
   ngOnInit(){
     this.getStates();
-    //this.getRegion();
+    this.getRegion();
     this.createVendorSearchForm()
   }
 }
