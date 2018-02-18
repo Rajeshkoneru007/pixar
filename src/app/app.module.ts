@@ -7,10 +7,6 @@ import { AppRoutingModule } from './app-routing.module';
 
 
 
-import { HttpClientInMemoryWebApiModule } from 'angular-in-memory-web-api';
-
-import { InMemoryStatesService }  from '../assets/InMemoryWebApi/in-memory-states.service';
-
 import {MatToolbarModule} from '@angular/material/toolbar';
 import {MatButtonModule} from '@angular/material/button';
 
@@ -29,9 +25,6 @@ import { DashboardComponent } from './dashboard/dashboard.component';
     BrowserModule,
     HttpClientModule,
     BrowserAnimationsModule,
-    HttpClientInMemoryWebApiModule.forRoot(
-      InMemoryStatesService, { dataEncapsulation: false },
-    ),
     AppRoutingModule,
     MatToolbarModule,
     MatButtonModule,

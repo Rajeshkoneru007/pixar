@@ -1,3 +1,49 @@
-<p>
-  vendor-list works!
-</p>
+
+<div *ngIf="vendorResult?.length ==1">
+<mat-table #table [dataSource]="vendorResult[0].vendorList">
+
+  <ng-container matColumnDef="vendorId">
+    <mat-header-cell *matHeaderCellDef>Vendor ID</mat-header-cell>
+    <mat-cell *matCellDef="let element"><a href="javascript:">{{element.vendorId}}</a></mat-cell>
+  </ng-container>
+
+  <ng-container matColumnDef="vendorName">
+      <mat-header-cell *matHeaderCellDef>Vendor Name</mat-header-cell>
+      <mat-cell *matCellDef="let element"> {{element.vendorName}} </mat-cell>
+  </ng-container>
+
+  <ng-container matColumnDef="Address">
+      <mat-header-cell *matHeaderCellDef>Address</mat-header-cell>
+      <mat-cell *matCellDef="let element"> {{element.Address}} </mat-cell>
+  </ng-container>
+
+  <ng-container matColumnDef="city">
+      <mat-header-cell *matHeaderCellDef>City</mat-header-cell>
+      <mat-cell *matCellDef="let element"> {{element.city}} </mat-cell>
+  </ng-container>
+
+  <ng-container matColumnDef="state">
+      <mat-header-cell *matHeaderCellDef>State</mat-header-cell>
+      <mat-cell *matCellDef="let element"> {{element.state}} </mat-cell>
+  
+    </ng-container>
+  <ng-container matColumnDef="zip">
+      <mat-header-cell *matHeaderCellDef>Zip</mat-header-cell>
+      <mat-cell *matCellDef="let element"> {{element.zip}} </mat-cell>
+  </ng-container>
+
+  <ng-container matColumnDef="phone">
+      <mat-header-cell *matHeaderCellDef>Phone</mat-header-cell>
+      <mat-cell *matCellDef="let element"> {{element.phone}} </mat-cell>
+  </ng-container>
+
+  <ng-container matColumnDef="contact">
+      <mat-header-cell *matHeaderCellDef>Contact</mat-header-cell>
+      <mat-cell *matCellDef="let element"> {{element.contact}} </mat-cell>
+  </ng-container>
+
+  <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+  <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+
+</mat-table>
+</div>

@@ -1,4 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit,Input } from '@angular/core';
+
+import {VendorList} from '../model/vendor';
 
 @Component({
   selector: 'app-vendor-list',
@@ -7,6 +9,11 @@ import { Component, OnInit } from '@angular/core';
 })
 export class VendorListComponent implements OnInit {
 
+  displayedColumns = ['vendorId','vendorName','Address','city','state','zip','phone','contact'];
+
+  @Input() vendorResult: VendorList;
+  
+  
   constructor() { }
 
   ngOnInit() {
